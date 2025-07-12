@@ -1,4 +1,5 @@
-const BACKEND_URL = "https://edusync-1iju.onrender.com/chat"; // update this
+const BACKEND_URL = "https://edusync-1iju.onrender.com/chat";
+// const BACKEND_URL = "http://localhost:8000/chat";
 
 export async function sendMessage(message, onChunk) {
     const response = await fetch(BACKEND_URL, {
