@@ -1,26 +1,22 @@
-# app/routers/chat.py
-
-from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from app.agents.base_llm import run_llm
+from langchain_core.prompts import ChatPromptTemplate
+from agents.base_llm import llm
 
-router = APIRouter()
-
-# Request + Response Schemas
 class ChatRequest(BaseModel):
     message: str
 
-class ChatResponse(BaseModel):
-    response: str
+def stream_response(generator):
+    for chunk in generator:
+        if chunk.content:
+            yield chunk.content
 
-@router.post("/", response_model=ChatResponse)
-async def chat_handler(payload: ChatRequest):
-    try:
-        if not payload.message.strip():
-            raise HTTPException(status_code=400, detail="Message cannot be empty")
+def generate_prompt(user_input: str):
+    prompt = ChatPromptTemplate.from_messages([
+        ("human", "{input}")
+    ])
+    return prompt.format_messages(input=user_input)
 
-        reply = run_llm(payload.message)
-        return {"response": reply}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error generating response: {str(e)}")
+def chat_stream_generator(user_input: str):
+    prompt = generate_prompt(user_input)
+    return stream_response(llm.stream(prompt))
