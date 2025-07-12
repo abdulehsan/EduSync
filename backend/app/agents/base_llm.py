@@ -5,7 +5,7 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",  # or "gemini-pro"
     temperature=0.2,
-    streaming=True,
+    # streaming=True,
     max_tokens=None,
     callbacks=[StreamingStdOutCallbackHandler()]  # Optional: logs chunks to stdout
 )
