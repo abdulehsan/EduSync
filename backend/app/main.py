@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-from chat import ChatRequest, chat_stream_generator
+from routers.chat import ChatRequest, chat_stream_generator
 
 app = FastAPI()
 
