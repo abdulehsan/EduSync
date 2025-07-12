@@ -7,7 +7,8 @@ app = FastAPI()
 # Allow frontend origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace "*" with Netlify domain in production
+    # allow_origins=["*"],  # Replace "*" with Netlify domain in production
+    allow_origins=["https://https://edusync-ai.netlify.app/"],  # Replace with your Netlify domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
