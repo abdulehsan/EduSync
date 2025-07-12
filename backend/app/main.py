@@ -8,7 +8,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     # allow_origins=["*"],  # Replace "*" with Netlify domain in production
-    allow_origins=["//https://edusync-ai.netlify.app/"],  # Replace with your Netlify domain
+    allow_origins=["https://edusync-ai.netlify.app/"],  # Replace with your Netlify domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
