@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { sendMessage } from "./api/chatApi";
-import { useEffect, useRef } from "react";
+import MessageBubble from "./components/MessageBubble";
 import "./App.css";
 
 function App() {
@@ -40,9 +40,7 @@ function App() {
     <div className="app">
       <div className="chat-container">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`message ${msg.sender}`}>
-            <div className="text">{msg.text}</div>
-          </div>
+          <MessageBubble key={idx} sender={msg.sender} text={msg.text} />
         ))}
         <div ref={chatEndRef} />
       </div>
