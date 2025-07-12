@@ -1,7 +1,7 @@
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from langchain_core.prompts import ChatPromptTemplate
-from agents.base_llm import llm
+from app.agents.base_llm import llm
 
 class ChatRequest(BaseModel):
     message: str
